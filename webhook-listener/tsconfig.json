@@ -1,0 +1,9 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+      // webhook 服务跑在 Node.js 环境，用 commonjs 即可
+      "module": "commonjs",
+      "moduleResolution": "node"
+    },
+    "include": ["**/*.ts"]
+  }

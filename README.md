@@ -97,16 +97,7 @@ Run
 目标
 仍在宿主机直接跑 Node，但把文章目录 blog-resources/ 挂载到外部路径（如 NAS 或 git 子模块），方便内容团队独立维护。
 关键改动
-修改 next.config.mjs 中的 pageExtensions 或 watchOptions，确保外部目录被监听（默认已支持同一 repo 内的软链接）。
-把真实文章仓库（或网络共享路径）用软链接挂到项目根：
-Apply to README.md
-Run
-resources
-操作步骤
-完成软链或绑定后，继续使用 pnpm dev / start。
-内容团队只需向 /mnt/wiki_articles 推送 Markdown，即刻生效。
-可选增强
-在生产机用 inotifywait + systemctl restart tendigram 半自动重载。
+核心需求就是“把 GitHub 上的文章仓库 ⇢ 实时/定时同步到本地 blog-resources 目录”，而你的应用已经在监听该目录，一旦文件变更就刷新。
 给外部目录建一个独立 git 仓库，历史版本管理更清晰。
 版本 2 动态重载：监控文件变更并热刷新
 目标
