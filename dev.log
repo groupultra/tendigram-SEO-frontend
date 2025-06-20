@@ -20,3 +20,4 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
  GET /blogs/chapter_025 200 in 1895ms
  GET / 200 in 87ms
  GET / 200 in 128ms
+ GET / 200 in 117ms
