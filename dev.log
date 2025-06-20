@@ -21,3 +21,73 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
  GET / 200 in 87ms
  GET / 200 in 128ms
  GET / 200 in 117ms
+ GET /?page=2 200 in 265ms
+ GET /?page=3 200 in 119ms
+ GET / 200 in 122ms
+ GET /blogs/chapter_005 200 in 109ms
+ GET /blogs/chapter_012 200 in 102ms
+ ✓ Compiled in 174ms
+ ✓ Compiled in 302ms
+ ✓ Compiled /blogs/[id] in 41ms
+[internalLinks] 读取链接 JSON 失败: Error: ENOENT: no such file or directory, open '/home/liushangjian/yoramethod/tendigram2/three_kingdoms_internal_links.json'
+    at loadLinks (app/lib/internalLinks.ts:29:19)
+    at applyInternalLinks (app/lib/internalLinks.ts:46:22)
+    at getPost (app/lib/markdown.ts:146:41)
+    at PostPage (app/blogs/[id]/page.tsx:24:29)
+  27 |   const jsonPath = process.env.LINKS_JSON_PATH || path.resolve(process.cwd(), '..', 'three_kingdoms_internal_links.json')
+  28 |   try {
+> 29 |     const raw = fs.readFileSync(jsonPath, 'utf-8')
+     |                   ^
+  30 |     cache = JSON.parse(raw) as LinkEntry[]
+  31 |   } catch (err) {
+  32 |     console.error('[internalLinks] 读取链接 JSON 失败:', err) {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/home/liushangjian/yoramethod/tendigram2/three_kingdoms_internal_links.json'
+}
+ GET /blogs/chapter_012 200 in 853ms
+ ✓ Compiled / in 23ms
+ GET / 200 in 402ms
+ GET /blogs/chapter_002 200 in 151ms
+ GET /blogs/chapter_002 200 in 154ms
+ GET / 200 in 84ms
+ GET / 200 in 228ms
+ GET / 200 in 114ms
+ GET /blogs/chapter_003 200 in 116ms
+ ✓ Compiled in 167ms
+ ✓ Compiled in 203ms
+ ✓ Compiled in 196ms
+ ✓ Compiled /blogs/[id] in 37ms
+ ⨯ TypeError: loadLinks(...).filter is not a function
+    at applyInternalLinks (app/lib/internalLinks.ts:60:34)
+    at getPost (app/lib/markdown.ts:146:41)
+    at PostPage (app/blogs/[id]/page.tsx:24:29)
+  58 |  */
+  59 | export function applyInternalLinks(docId: string, markdown: string): string {
+> 60 |   const linksForDoc = loadLinks().filter(l => l.source.doc_id === docId)
+     |                                  ^
+  61 |   if (!linksForDoc.length) return markdown
+  62 |
+  63 |   let result = markdown {
+  digest: '2887302894'
+}
+ GET /blogs/chapter_003 500 in 558ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 1147ms
+ GET /favicon.ico 200 in 1424ms
+ ✓ Compiled in 190ms
+ ✓ Compiled /blogs/[id] in 23ms
+[internalLinks] 成功加载 121 条链接记录，路径: /home/liushangjian/yoramethod/tendigram2/your-blog/three_kingdoms_internal_links.json
+ GET /blogs/chapter_003 200 in 524ms
+ GET /blogs/chapter_040 200 in 156ms
+ GET /blogs/chapter_021 200 in 157ms
+ GET /blogs/chapter_001 200 in 125ms
+ GET /blogs/chapter_085 200 in 145ms
+ GET /blogs/chapter_094 200 in 129ms
+ GET /blogs/chapter_005 200 in 142ms
+ GET /blogs/chapter_077 200 in 153ms
+ GET /blogs/chapter_098 200 in 158ms
+ GET /blogs/chapter_003 200 in 147ms
+ GET /blogs/chapter_040 200 in 148ms
+ GET /blogs/chapter_021 200 in 139ms

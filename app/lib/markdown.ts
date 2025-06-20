@@ -18,6 +18,7 @@ import path from 'path'
 import matter from 'gray-matter'  // 用于解析 Markdown 文件的 front-matter
 import { remark } from 'remark'   // Markdown 处理引擎
 import html from 'remark-html'   // 将 Markdown 转换为 HTML 的插件
+import { applyInternalLinks } from './internalLinks'
 
 /**
  * 文章元信息接口定义
@@ -141,8 +142,11 @@ export async function getPost(id: string) {
   // 解析 front-matter 和正文内容
   const { data, content: md } = matter(content)
   
+  // 在 Markdown 文本中插入内部链接
+  const mdWithLinks = applyInternalLinks(id, md)
+  
   // 同样尝试从正文中提取一级标题作为备用
-  const match = md.match(/^# (.+)$/m)
+  const match = mdWithLinks.match(/^# (.+)$/m)
   
   // 获取文件统计信息
   const stats = fs.statSync(file)
@@ -154,7 +158,7 @@ export async function getPost(id: string) {
     // 日期提取策略同 getAllPosts()
     date: data.date || stats.mtime.toISOString().slice(0, 10),
     // 将 Markdown 转换为 HTML 字符串
-    // remark().use(html).process(md) 返回 VFile 对象，toString() 获取 HTML 字符串
-    contentHtml: (await remark().use(html).process(md)).toString()
+    // remark().use(html).process(mdWithLinks) 返回 VFile 对象，toString() 获取 HTML 字符串
+    contentHtml: (await remark().use(html).process(mdWithLinks)).toString()
   }
 }
